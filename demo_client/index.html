@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bayview Pharmacy</title>
+    <link rel="stylesheet" href="./styles.css?v=17" />
+  </head>
+  <body>
+    <main class="prejoin-shell" id="prejoinShell">
+      <header class="meet-brand" aria-label="Bayview Pharmacy">
+        <span class="meet-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+        <span data-i18n="pharmacyName">Bayview Pharmacy</span>
+        <select class="lang-switcher" id="prejoinLangSwitcher">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="es">Español</option>
+        </select>
+      </header>
+
+      <div class="prejoin-content">
+        <section class="preview-pane" aria-label="Pre-call camera preview">
+          <div class="preview-card">
+            <video id="previewVideo" class="preview-video" autoplay playsinline muted></video>
+            <div class="visual-badge idle" id="previewVisualBadge">
+              <span class="visual-dot"></span>
+              <span data-i18n="visualLoading">Visual detection loading</span>
+            </div>
+            <div class="visual-badge gesture idle" id="previewGestureBadge">
+              <span class="visual-dot"></span>
+              <span data-i18n="gestureLoading">Gesture detection loading</span>
+            </div>
+            <div class="detection-box hidden" id="previewDetectionBox">
+              <span data-i18n="prescriptionBottle">Prescription bottle</span>
+            </div>
+            <div class="preview-empty" id="previewEmpty">
+              <div class="avatar-mark">B</div>
+              <p data-i18n="cameraPreview">Camera preview</p>
+            </div>
+            <div class="preview-overlay">
+              <button class="round-control" id="previewMuteButton" type="button" data-i18n="mic">Mic</button>
+              <button class="round-control" id="previewCameraButton" type="button" data-i18n="cam">Cam</button>
+            </div>
+          </div>
+
+          <div class="device-check">
+            <div class="check-title">
+              <span data-i18n="checkAudioVideo">Check your audio and video</span>
+              <div class="level-meter" id="previewMeter" aria-label="Microphone level"></div>
+            </div>
+            <div class="preview-controls">
+              <label>
+                <span data-i18n="microphone">Microphone</span>
+                <select id="micSelect"></select>
+              </label>
+              <label>
+                <span data-i18n="camera">Camera</span>
+                <select id="cameraSelect"></select>
+              </label>
+              <label>
+                <span data-i18n="speaker">Speaker</span>
+                <select id="speakerSelect"></select>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <aside class="join-panel" aria-label="Join video call">
+          <h1 data-i18n="bayviewVideoCall">Bayview video call</h1>
+          <p data-i18n="noOneHere">No one else is here</p>
+          <div class="join-status" id="previewStatus">
+            <span class="status-dot live"></span>
+            <span data-i18n="readyToJoin">Ready to join</span>
+          </div>
+          <div class="join-status avatar-status" id="avatarStatus">
+            <span class="status-dot"></span>
+            <span data-i18n="avatarChecking">AI Avatar checking</span>
+          </div>
+          <button class="join-button" id="joinButton" type="button">
+            <span data-i18n="joinNow">Join now</span>
+          </button>
+        </aside>
+      </div>
+    </main>
+
+    <main class="app-shell hidden" id="callShell">
+      <section class="call-area" aria-label="Video call">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" data-i18n="pharmacyName">Bayview Pharmacy</p>
+            <h1 data-i18n="videoAgent">Video Agent</h1>
+          </div>
+          <div class="topbar-right">
+            <select class="lang-switcher" id="callLangSwitcher">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="es">Español</option>
+            </select>
+            <div class="status-pill" id="statusPill">
+              <span class="status-dot" id="statusDot"></span>
+              <span id="statusText" data-i18n="idle">Idle</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="stage" aria-label="Video call participants">
+          <audio id="agentAudio" autoplay></audio>
+          <div class="visual-badge call idle" id="callVisualBadge">
+            <span class="visual-dot"></span>
+            <span data-i18n="visualReady">Visual detection ready</span>
+          </div>
+          <div class="visual-badge call gesture idle" id="callGestureBadge">
+            <span class="visual-dot"></span>
+            <span data-i18n="gestureReady">Gesture detection ready</span>
+          </div>
+          <div class="video-grid">
+            <article class="video-cell" aria-label="Bayview Agent video">
+              <video id="agentVideo" class="agent-video" autoplay playsinline></video>
+              <div class="stage-empty" id="stageEmpty">
+                <div class="agent-portrait" aria-hidden="true">
+                  <div class="agent-head">
+                    <span class="agent-hair"></span>
+                    <span class="agent-ear left"></span>
+                    <span class="agent-ear right"></span>
+                    <span class="agent-eye left"></span>
+                    <span class="agent-eye right"></span>
+                    <span class="agent-mouth"></span>
+                  </div>
+                  <div class="agent-neck"></div>
+                  <div class="agent-coat">
+                    <span class="agent-shirt"></span>
+                    <span class="agent-badge"></span>
+                  </div>
+                </div>
+                <div class="stage-empty-copy">
+                  <p data-i18n="bayviewAgent">Bayview Agent</p>
+                  <span data-i18n="avatarStandby">Video avatar standby</span>
+                </div>
+              </div>
+              <span class="display-name" data-i18n="bayviewAgent">Bayview Agent</span>
+              <span class="avatar-layer-status" id="callAvatarStatus" data-i18n="avatarChecking">AI Avatar checking</span>
+            </article>
+            <article class="video-cell" id="selfViewTile" aria-label="Your video">
+              <video id="selfView" class="self-view" autoplay playsinline muted></video>
+              <div class="detection-box hidden" id="callDetectionBox">
+                <span data-i18n="prescriptionBottle">Prescription bottle</span>
+              </div>
+              <span class="display-name" data-i18n="you">You</span>
+            </article>
+          </div>
+        </section>
+
+        <footer class="controls" aria-label="Call controls">
+          <button class="control-button" id="muteButton" type="button" disabled>
+            <span data-i18n="mute">Mute</span>
+          </button>
+          <button class="control-button danger" id="hangupButton" type="button" disabled>
+            <span data-i18n="leave">Leave</span>
+          </button>
+        </footer>
+      </section>
+
+      <aside class="chat-panel" aria-label="Conversation">
+        <header class="chat-header">
+          <div>
+            <p class="eyebrow" data-i18n="transcript">Transcript</p>
+            <h2 data-i18n="conversation">Conversation</h2>
+          </div>
+        </header>
+        <section class="speaker-strip" aria-label="Active speakers">
+          <div class="speaker-card" id="agentSpeaker">
+            <div class="speaker-avatar">B</div>
+            <div>
+              <strong data-i18n="bayviewAgent">Bayview Agent</strong>
+              <span id="agentSpeakerText" data-i18n="listening">Listening</span>
+            </div>
+            <div class="speaker-wave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="speaker-card" id="userSpeaker">
+            <div class="speaker-avatar user" data-i18n="you">You</div>
+            <div>
+              <strong data-i18n="you">You</strong>
+              <span id="userSpeakerText" data-i18n="micReady">Mic ready</span>
+            </div>
+            <div class="speaker-wave live" id="userWave" aria-hidden="true">
+              <span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+        </section>
+        <section class="call-audio-status" aria-label="Audio status">
+          <div>
+            <span data-i18n="agentAudio">Agent audio</span>
+            <strong id="agentAudioStatus" data-i18n="waiting">Waiting</strong>
+          </div>
+          <div class="audio-actions">
+            <button class="audio-retry-button" id="speakerPermissionButton" type="button" data-i18n="chooseOutput">Choose output</button>
+            <button class="audio-retry-button" id="audioRetryButton" type="button" hidden data-i18n="playAudio">Play audio</button>
+          </div>
+          <div class="call-mic-check">
+            <span data-i18n="micInput">Mic input</span>
+            <div class="level-meter compact" id="callMicMeter" aria-label="Live microphone level"></div>
+          </div>
+        </section>
+        <section class="call-device-panel" aria-label="Call devices">
+          <label>
+            <span data-i18n="microphone">Microphone</span>
+            <select id="callMicSelect"></select>
+          </label>
+          <label>
+            <span data-i18n="camera">Camera</span>
+            <select id="callCameraSelect"></select>
+          </label>
+          <label>
+            <span data-i18n="speaker">Speaker</span>
+            <select id="callSpeakerSelect"></select>
+          </label>
+        </section>
+        <div class="messages" id="messages" aria-live="polite">
+          <div class="message system" data-i18n="connectPrompt">Connect to begin the secure pharmacy call.</div>
+        </div>
+        <form class="chat-composer" id="chatForm">
+          <input id="chatInput" type="text" autocomplete="off" data-i18n-placeholder="messagePlaceholder" placeholder="Message the agent" />
+          <button class="control-button primary" id="sendButton" type="submit" disabled data-i18n="send">Send</button>
+        </form>
+      </aside>
+    </main>
+    <script type="module" src="./app.js?v=18"></script>
+  </body>
+</html>
