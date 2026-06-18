@@ -357,8 +357,10 @@ function applyLanguage(lang) {
     el.placeholder = t(key);
   });
   state.activeLanguage = LANG_CODES[lang] || "English";
-  document.getElementById("prejoinLangSwitcher").value = lang;
-  document.getElementById("callLangSwitcher").value = lang;
+  const prejoinEl = document.getElementById("prejoinLangSwitcher");
+  const callEl = document.getElementById("callLangSwitcher");
+  if (prejoinEl) prejoinEl.value = lang;
+  if (callEl) callEl.value = lang;
 }
 
 const elements = {
@@ -414,8 +416,13 @@ createMeterBars(elements.callMicMeter);
 function handleLangChange(e) {
   applyLanguage(e.target.value);
 }
-document.getElementById("prejoinLangSwitcher").addEventListener("change", handleLangChange);
-document.getElementById("callLangSwitcher").addEventListener("change", handleLangChange);
+for (const id of ["prejoinLangSwitcher", "callLangSwitcher"]) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.addEventListener("change", handleLangChange);
+    el.addEventListener("input", handleLangChange);
+  }
+}
 applyLanguage("en");
 
 elements.joinButton.addEventListener("click", startCall);
