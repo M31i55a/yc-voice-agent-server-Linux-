@@ -28,6 +28,75 @@ Bayview Pharmacy voice agent — a Pipecat-based AI assistant for pharmacy calls
 
 ---
 
+## How to Launch It!
+
+### 1. Clone and enter the project
+
+```bash
+git clone https://github.com/M31i55a/yc-voice-agent-server-Linux-.git
+cd yc-voice-agent-server-Linux-
+```
+
+### 2. Install dependencies
+
+```bash
+uv sync
+```
+
+> If you don't have `uv`, install it first: `pip install uv` or follow the [official guide](https://docs.astral.sh/uv/#getting-started).
+
+### 3. Configure API keys
+
+Copy the example environment file and fill in your keys:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` and set at least these:
+
+```
+OPENAI_API_KEY=sk-your-key-here
+ANTHROPIC_API_KEY=sk-ant-your-key-here
+DAILY_API_KEY=your-daily-key-here
+```
+
+A Daily API key is required for WebRTC transport. Get one free at [daily.co](https://daily.co).
+
+### 4. Start the server
+
+```bash
+uv run python demo_frontend.py
+```
+
+You should see output like:
+
+```
+INFO:     Started server process [12345]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8765
+```
+
+### 5. Open the app
+
+Open your browser to **http://localhost:8765**
+
+You'll see the Bayview Pharmacy pre-join lobby. Select your microphone and camera, then click **Join now** to start a call with the AI agent.
+
+### Choosing an AI backend
+
+By default the server runs the GPT bot (`bot-gpt.py`). To use the NVIDIA Nemotron backend instead, edit `demo_frontend.py` and swap the import:
+
+```python
+# from bot_gpt import bot  # GPT (default)
+from bot_nemotron import bot  # Nemotron
+```
+
+---
+
+
+
 ## How It Works
 
 ### 1. Pre-join Lobby
