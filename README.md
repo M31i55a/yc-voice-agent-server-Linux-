@@ -166,6 +166,15 @@ A `<select>` dropdown in the top-right corner of both views lets the user switch
 2. Add translation entries for all keys in the `translations` object in `app.js` (three language blocks: `en`, `fr`, `es`)
 3. Add the language to `LANG_CODES`
 
+### 6. Light / Dark Mode Switcher
+
+A theme toggle button (sun/moon icon) appears in the top-right of both the pre-join lobby and the in-call view, next to the language switcher.
+
+- Clicking the button toggles between light and dark themes instantly
+- The preference is saved to `localStorage` and restored on reload
+- CSS custom properties (`--text`, `--surface`, `--soft`, `--call-bg`, etc.) drive the theme; a `[data-theme="dark"]` selector overrides them
+- The toggle uses Unicode icons (`☀️` / `🌙`) so no extra assets are needed
+
 ---
 
 ## Setup
