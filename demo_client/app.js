@@ -340,9 +340,19 @@ const translations = {
 };
 
 let currentLang = "en";
+let currentTheme = localStorage.getItem("theme") || "light";
 
 function t(key) {
   return translations[currentLang]?.[key] || translations.en[key] || key;
+}
+
+function applyTheme(theme) {
+  currentTheme = theme;
+  document.documentElement.dataset.theme = theme === "dark" ? "dark" : "light";
+  localStorage.setItem("theme", theme);
+  for (const btn of [document.getElementById("prejoinThemeToggle"), document.getElementById("callThemeToggle")]) {
+    if (btn) btn.textContent = theme === "dark" ? "\u2600\uFE0F" : "\uD83C\uDF19";
+  }
 }
 
 function applyLanguage(lang) {
@@ -423,7 +433,15 @@ for (const id of ["prejoinLangSwitcher", "callLangSwitcher"]) {
     el.addEventListener("input", handleLangChange);
   }
 }
+function handleThemeToggle() {
+  applyTheme(currentTheme === "dark" ? "light" : "dark");
+}
+for (const id of ["prejoinThemeToggle", "callThemeToggle"]) {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener("click", handleThemeToggle);
+}
 applyLanguage("en");
+applyTheme(currentTheme);
 
 elements.joinButton.addEventListener("click", startCall);
 elements.previewMuteButton.addEventListener("click", togglePreviewMic);

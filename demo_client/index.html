@@ -13,11 +13,14 @@
           <span></span><span></span><span></span><span></span>
         </span>
         <span data-i18n="pharmacyName">Bayview Pharmacy</span>
-        <select class="lang-switcher" id="prejoinLangSwitcher">
-          <option value="en">English</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-        </select>
+        <div class="header-controls">
+          <button class="theme-toggle" id="prejoinThemeToggle" type="button" aria-label="Toggle theme"></button>
+          <select class="lang-switcher" id="prejoinLangSwitcher">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="es">Español</option>
+          </select>
+        </div>
       </header>
 
       <div class="prejoin-content">
@@ -93,6 +96,7 @@
             <h1 data-i18n="videoAgent">Video Agent</h1>
           </div>
           <div class="topbar-right">
+            <button class="theme-toggle" id="callThemeToggle" type="button" aria-label="Toggle theme"></button>
             <select class="lang-switcher" id="callLangSwitcher">
               <option value="en">English</option>
               <option value="fr">Français</option>
