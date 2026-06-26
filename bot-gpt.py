@@ -254,6 +254,7 @@ async def run_bot(
             }
         )
 
+# function to end the call, flushing any queued speech and hanging up
     async def end_call(params: FunctionCallParams) -> None:
         """End the call. Only call this AFTER you have said goodbye to the
         caller in the same turn. The pipeline will flush any queued speech
