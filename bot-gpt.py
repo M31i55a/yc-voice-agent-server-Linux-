@@ -527,6 +527,7 @@ async def bot(runner_args: RunnerArguments):
     )
 
 
+#This is the entry point for running the bot directly with `uv run bot-gpt.py`. It mounts the demo frontend and starts the main runner.
 if __name__ == "__main__":
     from pipecat.runner.run import main
 
